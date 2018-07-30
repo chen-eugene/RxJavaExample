@@ -1,12 +1,23 @@
 package com.eugene.rxjavaexample.http
 
-import com.eugene.rxjavaexample.bean.LoginBean
 import com.eugene.rxjavaexample.bean.RequestParams
 import com.eugene.rxjavaexample.bean.WorldBean
 import io.reactivex.Observable
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.*
 
+
 interface RetrofitApi {
+
+    /**
+     * 使用Retrofit2一般都是针对于一baseURL，
+     * 其它接口都是拼接不同的参数如get/photo,search?name=xiaohong&&sex=female,这样的形式。
+     * 但是一些请求此时又要访问不同的url只能重新生成一个Retrofit2实例，实质上还有一种形式去处理，就是使用@url注解
+     *
+     * @url 可以动态的设置url
+     */
+    fun dynamicUrl(@Url url: String)
 
     /**
      * GET请求不带参数
@@ -83,8 +94,65 @@ interface RetrofitApi {
     fun postWorldBody(@Body params: RequestParams): Observable<WorldBean>
 
 
+    /**
+     * 上传单个文件
+     * @Part("description") 可以加一些描述信息(可以不加)
+     * 描述信息可以放在RequestBody中，也可以直接用String
+     * @Part file: MultipartBody.Part 文件必须使用MultipartBody上传
+     */
+    @Multipart
+    @POST("upload")
+    fun uploadFile(@Part("description") description: RequestBody,
+                   @Part file: MultipartBody.Part): Observable<BaseResp<Nothing>>
 
+    /**
+     * 上传文件放到RequestBody中
+     * 如果需要上传多个文件，可以增加@Part
+     * @Part("desc") desc: String 添加一些描述信息(可以不加)
+     */
+    @Multipart
+    @POST("upload")
+    fun uploadFile(@Part("description") description: String,
+                   @Part("file\"; filename=\"1.txt") file: RequestBody): Observable<BaseResp<Nothing>>
 
+    /**
+     * 上传多个文件，针对固定数量的文件
+     */
+    @Multipart
+    @POST("upload")
+    fun uoloadFiles(@Part("description") description: String,
+                    @Part("file\"; filename=\"1.txt") file1: RequestBody,
+                    @Part("file\"; filename=\"2.txt") file2: RequestBody): Observable<BaseResp<Nothing>>
 
+    /**
+     * 使用@PartMap
+     * 上传多个文件，文件数量不确定
+     */
+    @Multipart
+    @POST("upload")
+    fun uoloadFiles(@Part("description") description: String
+                    , @PartMap maps: Map<String, RequestBody>): Observable<BaseResp<Nothing>>
+
+    /**
+     * 使用List
+     * 上传多个文件，文件数量不确定
+     */
+    @Multipart
+    @POST("upload")
+    fun uoloadFiles(@Part("description") description: String
+                    , @Part parts: List<MultipartBody.Part>): Observable<BaseResp<Nothing>>
+
+    /**
+     * 不是使用@Multipart注解，
+     * 直接使用@Body注解方法参数
+     */
+    @POST("upload")
+    fun uploadFiles(@Body multipartBody: MultipartBody): Observable<BaseResp<Nothing>>
+
+    /**
+     * 文件和文字一起上传
+     */
+    fun uploadFileAndText(@FieldMap map: Map<String, String>,
+                          @Part("file\"; filename=\"1.txt") file1: RequestBody): Observable<BaseResp<Nothing>>
 
 }
