@@ -7,11 +7,11 @@ import android.widget.TextView
 import io.reactivex.Observable
 import io.reactivex.Observer
 
-class TextChangeObservable(val view: TextView) : Observable<String>() {
+class TextChangeObservable(val view: TextView?) : Observable<String>() {
 
 
     override fun subscribeActual(observer: Observer<in String>?) {
-        view.addTextChangedListener(object : TextWatcher {
+        view?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
 

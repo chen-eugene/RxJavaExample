@@ -1,4 +1,4 @@
-package com.eugene.rxjavaexample.example
+package com.eugene.rxjavaexample.rxexample
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

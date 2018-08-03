@@ -17,6 +17,7 @@ interface RetrofitApi {
      *
      * @url 可以动态的设置url
      */
+    @GET
     fun dynamicUrl(@Url url: String)
 
     /**

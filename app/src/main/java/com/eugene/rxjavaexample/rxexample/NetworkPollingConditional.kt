@@ -1,12 +1,10 @@
-package com.eugene.rxjavaexample.example
+package com.eugene.rxjavaexample.rxexample
 
 import android.util.Log
 import com.eugene.rxjavaexample.Api
 import com.eugene.rxjavaexample.bean.WorldBean
 import com.eugene.rxjavaexample.utils.RxUtil
 import io.reactivex.Observable
-import io.reactivex.ObservableSource
-import io.reactivex.ObservableTransformer
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

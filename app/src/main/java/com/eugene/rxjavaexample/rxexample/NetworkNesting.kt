@@ -1,4 +1,4 @@
-package com.eugene.rxjavaexample.example
+package com.eugene.rxjavaexample.rxexample
 
 import android.util.Log
 import com.eugene.rxjavaexample.Api

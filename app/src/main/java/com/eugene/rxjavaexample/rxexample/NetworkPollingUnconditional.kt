@@ -1,4 +1,4 @@
-package com.eugene.rxjavaexample.example
+package com.eugene.rxjavaexample.rxexample
 
 import android.util.Log
 import com.eugene.rxjavaexample.Api
@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit
 /**
  * 网络无条件轮询
  */
-class NetworkPollingUnconditional {
+class   NetworkPollingUnconditional {
 
     private val TAG = NetworkPollingUnconditional::class.java.name
 

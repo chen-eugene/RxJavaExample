@@ -17,13 +17,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".example.CombineLatest"
+            android:name=".rxexample.CombineLatest"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".example.ThrottleFirst"
+            android:name=".rxexample.ThrottleFirst"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".example.Debounce"
+            android:name=".rxexample.Debounce"
             android:screenOrientation="portrait" />
     </application>
 
