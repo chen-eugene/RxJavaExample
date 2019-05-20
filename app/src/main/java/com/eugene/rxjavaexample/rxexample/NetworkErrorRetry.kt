@@ -1,5 +1,6 @@
 package com.eugene.rxjavaexample.rxexample
 
+import android.annotation.SuppressLint
 import android.util.Log
 import com.eugene.rxjavaexample.Api
 import io.reactivex.Observable
@@ -21,6 +22,7 @@ class NetworkErrorRetry {
     private val waitRetryTime = 2L
 
 
+    @SuppressLint("CheckResult")
     fun request() {
 
         val retrofit = Retrofit.Builder()

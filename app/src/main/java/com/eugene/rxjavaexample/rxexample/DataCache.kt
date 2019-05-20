@@ -1,5 +1,6 @@
 package com.eugene.rxjavaexample.rxexample
 
+import android.annotation.SuppressLint
 import android.util.Log
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
@@ -16,6 +17,7 @@ class DataCache {
     var diskCache: String? = "从磁盘缓存中获取数据"
 
 
+    @SuppressLint("CheckResult")
     fun request() {
 
         /*
@@ -68,9 +70,9 @@ class DataCache {
                 // c. 即firstElement()已发出第1个有效事件（disk事件），所以停止判断。
 
                 // 3. 观察者订阅
-                .subscribe({
+                .subscribe {
                     Log.d(TAG, "最终获取的数据来源 = $it")
-                })
+                }
 
     }
 

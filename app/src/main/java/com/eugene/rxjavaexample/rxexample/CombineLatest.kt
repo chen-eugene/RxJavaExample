@@ -1,5 +1,6 @@
 package com.eugene.rxjavaexample.rxexample
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.eugene.rxjavaexample.R
@@ -20,6 +21,7 @@ class CombineLatest : AppCompatActivity() {
         combline()
     }
 
+    @SuppressLint("CheckResult")
     fun combline() {
 
         //采用skip(1)原因：跳过 一开始EditText无任何输入时的空值

@@ -1,5 +1,6 @@
 package com.eugene.rxjavaexample.rxexample
 
+import android.annotation.SuppressLint
 import android.util.Log
 import com.eugene.rxjavaexample.Api
 import com.eugene.rxjavaexample.bean.ChinaBean
@@ -19,6 +20,7 @@ class MergeDataSource {
 
     private val TAG = MergeDataSource::class.java.name
 
+    @SuppressLint("CheckResult")
     fun request() {
 
         // 步骤1：创建Retrofit对象
@@ -40,7 +42,7 @@ class MergeDataSource {
         Observable.zip(observable1, observable2,
                 // 注：创建BiFunction对象传入的第3个参数 = 合并后数据的数据类型
                 BiFunction<WorldBean, ChinaBean, String> { t1, t2 ->
-                    t1.toString() + " & " + t2.toString()
+                    "$t1 & $t2"
                 })
                 .observeOn(AndroidSchedulers.mainThread()) // 在主线程接收 & 处理数据
                 .subscribe({

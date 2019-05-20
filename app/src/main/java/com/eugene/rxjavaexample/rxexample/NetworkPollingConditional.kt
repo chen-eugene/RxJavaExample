@@ -37,7 +37,7 @@ class NetworkPollingConditional {
         request.getWorld()
                 .compose(RxUtil.applySchedulers())
                 .repeatWhen {
-            it.flatMap({
+            it.flatMap {
                 if (i > 3) {
                     // 此处选择发送onError事件以结束轮询，因为可触发下游观察者的onError（）方法回调
                     Observable.error<Throwable>(Throwable(""))
@@ -45,9 +45,9 @@ class NetworkPollingConditional {
                 // 若轮询次数＜4次，则发送1Next事件以继续轮询
                 // 注：此处加入了delay操作符，作用 = 延迟一段时间发送（此处设置 = 2s），以实现轮询间间隔设置
                 Observable.just(1).delay(2000, TimeUnit.MILLISECONDS)
-            })
+            }
 
-        }.subscribeOn(Schedulers.io())
+                }.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())  // 切换回到主线程 处理请求结果
                 .subscribe(object : Observer<WorldBean> {
                     override fun onComplete() {

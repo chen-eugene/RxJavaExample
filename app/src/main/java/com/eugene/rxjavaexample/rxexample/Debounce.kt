@@ -1,5 +1,6 @@
 package com.eugene.rxjavaexample.rxexample
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.eugene.rxjavaexample.R
@@ -21,6 +22,7 @@ class Debounce : AppCompatActivity() {
     }
 
 
+    @SuppressLint("CheckResult")
     private fun debounce() {
 
         RxView.textChange(et_input)

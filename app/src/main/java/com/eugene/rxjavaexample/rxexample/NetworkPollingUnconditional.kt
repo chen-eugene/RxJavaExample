@@ -36,11 +36,11 @@ class   NetworkPollingUnconditional {
                  * 步骤2：每次发送数字前发送1次网络请求（doOnNext（）在执行Next事件前调用）
                  * 即每隔1秒产生1个数字前，就发送1次网络请求，从而实现轮询需求
                  **/
-                .doOnNext({
+                .doOnNext {
 
                     /*
-                     * 步骤3：通过Retrofit发送网络请求
-                     **/
+                             * 步骤3：通过Retrofit发送网络请求
+                             **/
                     // a. 创建Retrofit对象
                     val retrofit = Retrofit.Builder()
                             .baseUrl("http://fy.iciba.com/") // 设置 网络请求 Url
@@ -73,7 +73,7 @@ class   NetworkPollingUnconditional {
                                 }
                             })
 
-                }).subscribe(object : Observer<Long> {
+                }.subscribe(object : Observer<Long> {
                     override fun onComplete() {
                         Log.e(TAG, "对Complete事件作出响应")
                     }
